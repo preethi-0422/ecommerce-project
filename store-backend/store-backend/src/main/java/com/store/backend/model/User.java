@@ -22,7 +22,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String name;
+    private String username;
 
     @Column(nullable = false, unique = true, length = 150)
     private String email;
@@ -36,6 +36,8 @@ public class User {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+
 
     public enum Role { USER, ADMIN }
 }
