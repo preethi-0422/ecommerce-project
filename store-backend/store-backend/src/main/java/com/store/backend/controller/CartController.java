@@ -22,12 +22,24 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Cart> addItem(
+    public ResponseEntity<?> addItem(
             @RequestBody Map<String, Object> body,
             Principal principal) {
-        Long productId = Long.valueOf(body.get("productId").toString());
-        int quantity   = Integer.parseInt(body.get("quantity").toString());
-        return ResponseEntity.ok(cartService.addItem(principal.getName(), productId, quantity));
+
+        Object productObj = body.get("productId");
+        Object quantityObj = body.get("quantity");
+
+        if (productObj == null || quantityObj == null) {
+            return ResponseEntity.badRequest()
+                    .body("productId and quantity are required");
+        }
+
+        Long productId = Long.valueOf(productObj.toString());
+        int quantity = Integer.parseInt(quantityObj.toString());
+
+        return ResponseEntity.ok(
+                cartService.addItem(principal.getName(), productId, quantity)
+        );
     }
 
     @PutMapping("/update/{itemId}")
