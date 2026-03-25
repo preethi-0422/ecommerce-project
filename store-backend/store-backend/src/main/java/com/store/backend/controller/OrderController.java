@@ -5,9 +5,12 @@ package com.store.backend.controller;
 import com.store.backend.dto.OrderRequest;
 import com.store.backend.dto.OrderResponse;
 import com.store.backend.model.Order;
+import com.store.backend.model.User;
 import com.store.backend.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +26,11 @@ public class OrderController {
     // e.g. Long userId = ((UserDetails) authentication.getPrincipal()).getId();
 
     // Place a new order
-    @PostMapping("/{userId}")
+    @PostMapping
     public ResponseEntity<OrderResponse> placeOrder(
-            @PathVariable Long userId,
+            @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody OrderRequest request) {
+            Long userId = ((User) userDetails).getId();
         return ResponseEntity.ok(orderService.placeOrder(userId, request));
     }
 

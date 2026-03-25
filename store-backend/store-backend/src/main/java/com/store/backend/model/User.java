@@ -8,6 +8,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +25,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String name;
+    private String username;
 
     @Column(nullable = false, unique = true, length = 150)
     private String email;
@@ -37,5 +40,15 @@ public class User {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+
+
+    public List<String> getRoles() {
+        return List.of(role.name());
+    }
+
+
+    public void setRoles(Set<String> roles) {
+        this.role = Role.valueOf(roles.iterator().next());
+    }
     public enum Role { USER, ADMIN }
 }

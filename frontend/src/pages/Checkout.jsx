@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { useAuth } from "../context/AuthContext";
+// import { CartContext } from "../context/CartContext";
  
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const userId = 1; // TODO: replace with AuthContext
-
-  const [cartItems] = useState([
-    { productId: 1, productName: "Sample Product", quantity: 2, unitPrice: 499 },
-  ]);
+  
+  const { cartItems } = useContext(CartContext);
+  const { user } = useAuth();
+  const userId = user?.id || 1;
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(null);
 

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import { useContext } from "react";
+import { useAuth } from "../context/AuthContext";
  
 
 export default function Orders() {
@@ -7,7 +9,8 @@ export default function Orders() {
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState(null);
 
-  const userId = 1; // TODO: replace with AuthContext
+ const { user } = useAuth();
+  const userId = user?.id || 1;
 
   useEffect(() => {
     api.get(`/orders/user/${userId}`)

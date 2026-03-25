@@ -1,3 +1,4 @@
+ 
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
@@ -25,6 +26,7 @@ export default function Navbar() {
         ) : (
           <>
             <Link to="/login">Login</Link>
+            <Link to="/admin">Admin</Link>
             <Link to="/register">Register</Link>
           </>
         )}
@@ -32,3 +34,4 @@ export default function Navbar() {
     </nav>
   );
 }
+ 

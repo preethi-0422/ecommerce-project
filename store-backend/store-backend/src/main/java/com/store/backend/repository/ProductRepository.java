@@ -4,7 +4,14 @@ import com.store.backend.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    // findById and save come free from JpaRepository
+
+    // from HEAD branch
+    Product findByName(String name);
+
+    // from feature/products branch
+    List<Product> findByCategoryId(Long categoryId);
 }
