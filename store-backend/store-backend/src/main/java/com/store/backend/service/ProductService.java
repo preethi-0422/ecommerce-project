@@ -1,7 +1,8 @@
 package com.store.backend.service;
 
 import com.store.backend.model.Product;
-import com.store.backend.repository.ProductRepository;
+import com.store.backend.repository.*;
+import com.store.backend.exception.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ProductService {
 
     public Product getProduct(Long id) {
         return repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
     }
 
     public List<Product> getByCategory(Long categoryId) {

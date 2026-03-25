@@ -1,7 +1,7 @@
 package com.store.backend.controller;
 
-import com.store.backend.model.Product;
 import com.store.backend.service.ProductService;
+import com.store.backend.model.Product;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

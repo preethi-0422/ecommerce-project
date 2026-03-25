@@ -1,4 +1,4 @@
-package com.store.backend.config;
+package com.store.backend.security;
 
 import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

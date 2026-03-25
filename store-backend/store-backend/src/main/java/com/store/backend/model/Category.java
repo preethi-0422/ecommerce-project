@@ -8,8 +8,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
+    @Column(unique = true) // ✅ ensures uniqueness
     private String name;
 
     // getters & setters
